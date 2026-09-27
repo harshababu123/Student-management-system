@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8fafc">
+  <title>StudentDesk · Academic records</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'students/style.css' %}">
+  <script src="{% static 'students/script.js' %}" defer></script>
+</head>
+<body>
+  <section class="auth-screen" id="auth-screen">
+    <div class="auth-story"><a class="brand auth-brand" href="/"><span class="brand-mark">S</span><span>student<span class="brand-light">desk</span></span></a><div class="auth-story-copy"><div class="eyebrow">ACADEMIC WORKSPACE</div><h1>Every record.<br><span>In good hands.</span></h1><p>A shared space for teachers to guide progress and students to see how far they’ve come.</p><div class="auth-feature"><span>✓</span> Private student profiles and results</div><div class="auth-feature"><span>✓</span> Courses, enrollment and assessments</div></div><div class="auth-story-footer">STUDENTDESK <span>·</span> LEARNING, ORGANIZED</div><span class="auth-orbit orbit-one"></span><span class="auth-orbit orbit-two"></span></div>
+    <div class="auth-side"><div class="auth-card"><div class="auth-mobile-brand"><span class="brand-mark">S</span> student<span class="brand-light">desk</span></div><div class="eyebrow" id="auth-eyebrow">WELCOME BACK</div><h2 id="auth-title">Sign in to your workspace</h2><p class="auth-subtitle" id="auth-subtitle">Use your teacher or student account to continue.</p>
+      <form id="login-form"><label for="login-identifier">Username or email</label><input id="login-identifier" autocomplete="username" required placeholder="you@example.com"><label for="login-password">Password</label><input id="login-password" type="password" autocomplete="current-password" required placeholder="Enter your password"><button class="button primary auth-submit" type="submit">Sign in <span>→</span></button><p class="form-message" id="login-message" role="status"></p></form>
+      <form id="register-form" class="hidden"><div class="signup-note">Your teacher must register your student profile before you can create an account.</div><label for="register-code">Student ID</label><input id="register-code" required placeholder="STU-00001"><label for="register-email">Registered email</label><input id="register-email" type="email" required placeholder="student@example.com"><label for="register-password">Create password</label><input id="register-password" type="password" minlength="8" autocomplete="new-password" required placeholder="At least 8 characters"><button class="button primary auth-submit" type="submit">Create student account <span>→</span></button><p class="form-message" id="register-message" role="status"></p></form>
+      <div class="auth-switch" id="register-prompt">Are you a student? <button type="button" id="show-register">Create your account</button></div><div class="auth-switch hidden" id="login-prompt">Already have an account? <button type="button" id="show-login">Sign in</button></div><div class="auth-divider"><span></span>ROLE BASED ACCESS<span></span></div><p class="auth-footnote">Teachers manage academic records. Students can only view their own profile and marks.</p></div></div>
+  </section>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#students" aria-label="StudentDesk home"><span class="brand-mark">S</span><span>student<span class="brand-light">desk</span></span></a>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="students" type="button"><span class="nav-icon">▦</span>Students<span class="nav-count" id="nav-student-count">0</span></button>
+        <button class="nav-link" data-view="courses" type="button"><span class="nav-icon">▤</span>Courses</button>
+        <button class="nav-link" data-view="marks" type="button"><span class="nav-icon">▥</span>Marks & results</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="help-card"><span class="help-icon">✦</span><strong>Academic overview</strong><p>Keep student records, courses and progress in one place.</p></div><div class="profile"><div class="profile-avatar" id="profile-avatar">AD</div><div><strong id="profile-name">Academic desk</strong><small id="profile-role">Teacher account</small></div><button class="signout-button" id="signout-button" type="button" title="Sign out" aria-label="Sign out">↪</button></div></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar"><button class="mobile-menu" id="mobile-menu" type="button" aria-label="Open navigation">☰</button><div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="breadcrumb-current">Students</strong></div><div class="topbar-right"><span class="secure-pill" id="role-badge"><i></i> TEACHER ACCOUNT</span><div class="top-avatar" id="top-avatar">AD</div><button class="mobile-signout" id="mobile-signout" type="button">Sign out</button></div></header>
+
+      <div class="page-content">
+        <section class="page-heading"><div><div class="eyebrow" id="page-eyebrow">PEOPLE & RECORDS</div><h1 id="page-title">Student directory</h1><p id="page-subtitle">Manage student profiles, enrollment and contact details.</p></div><button class="button primary" id="add-student-button" type="button"><span>＋</span> Add student</button></section>
+
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon teal">♙</span><span class="stat-label">ACTIVE STUDENTS</span><strong id="stat-students">0</strong><small><i class="stat-dot"></i> Enrolled in your programs</small></article>
+          <article class="stat-card"><span class="stat-icon blue">▤</span><span class="stat-label">ACTIVE COURSES</span><strong id="stat-courses">0</strong><small>Available for enrollment</small></article>
+          <article class="stat-card"><span class="stat-icon amber">▥</span><span class="stat-label">MARKS RECORDED</span><strong id="stat-marks">0</strong><small>Assessments entered</small></article>
+          <article class="stat-card stat-highlight"><span class="stat-label">YOUR REGISTRY</span><strong>One clear view.</strong><small>Profiles · Courses · Progress</small><span class="highlight-orb"></span></article>
+        </div>
+
+        <section class="view-panel active" id="view-students">
+          <div class="section-heading"><div><h2>All students <span class="count" id="student-count">0</span></h2><p>Browse, search and update student records.</p></div><button class="button outline" id="archive-toggle" type="button">View archived</button></div>
+          <div class="toolbar"><label class="search-box"><span>⌕</span><input id="student-search" type="search" placeholder="Search name or student ID…" aria-label="Search students"></label><label class="select-wrap"><span>Course</span><select id="course-filter"><option value="">All courses</option></select></label><button class="button icon-button" id="refresh-students" type="button" aria-label="Refresh students">↻</button></div>
+          <div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>STUDENT ID</th><th>COURSE</th><th>CONTACT</th><th>STATUS</th><th class="actions-col">ACTIONS</th></tr></thead><tbody id="student-list"><tr><td class="empty" colspan="6">Loading students…</td></tr></tbody></table></div>
+          <div class="table-footer"><span id="student-summary">Showing 0 students</span><span class="footer-dot"></span><span>Changes save to your local database</span></div>
+        </section>
+
+        <section class="view-panel" id="view-courses">
+          <div class="section-heading"><div><h2>Course catalog</h2><p>Create courses and manage student enrollment.</p></div><button class="button primary" id="add-course-button" type="button"><span>＋</span> Add course</button></div>
+          <div class="course-grid" id="course-list"><div class="empty-card">Loading courses…</div></div>
+        </section>
+
+        <section class="view-panel" id="view-marks">
+          <div class="section-heading"><div><h2>Marks & results</h2><p>Record assessment scores or look up a student’s results.</p></div><span class="role-pill"><span>✦</span> TEACHER DESK</span></div>
+          <div id="teacher-marks-workspace"><div class="marks-layout">
+            <section class="subpanel teacher-panel"><div class="subpanel-heading"><span class="subpanel-icon">✎</span><div><h3>Enter marks</h3><p>Record or update an assessment score.</p></div></div>
+              <form id="mark-form"><input type="hidden" id="mark-id"><label for="mark-student">Student</label><select id="mark-student" required><option value="">Choose a student</option></select><label for="assessment">Assessment</label><input id="assessment" required maxlength="120" placeholder="e.g. Midterm examination"><div class="form-row"><div><label for="score">Score earned</label><input id="score" type="number" min="0" step="0.01" required placeholder="85"></div><div><label for="maximum-score">Out of</label><input id="maximum-score" type="number" min="0.01" step="0.01" value="100" required></div></div><label for="feedback">Feedback <span class="optional">OPTIONAL</span></label><textarea id="feedback" rows="3" placeholder="Add a note for the student"></textarea><div class="form-actions"><button class="button primary" id="save-mark" type="submit">Save assessment</button><button class="button quiet hidden" id="cancel-mark" type="button">Cancel</button></div><p class="form-message" id="mark-message" role="status"></p></form>
+            </section>
+            <section class="subpanel marks-table-panel"><div class="subpanel-heading"><span class="subpanel-icon purple">▥</span><div><h3>Recent assessments</h3><p>Latest marks across your active students.</p></div></div><div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>ASSESSMENT</th><th>RESULT</th><th class="actions-col">ACTIONS</th></tr></thead><tbody id="marks-list"><tr><td class="empty" colspan="4">Loading marks…</td></tr></tbody></table></div></section>
+          </div></div>
+          <section class="subpanel student-portal hidden" id="student-portal"><div class="portal-welcome"><span class="portal-avatar" id="portal-avatar">S</span><div><div class="eyebrow">YOUR STUDENT PROFILE</div><h3 id="portal-name">Welcome</h3><p id="portal-course">Loading your enrollment…</p></div><span class="id-tag" id="portal-code">STU-00000</span></div><div class="portal-details"><div><small>EMAIL</small><strong id="portal-email">—</strong></div><div><small>PHONE</small><strong id="portal-phone">—</strong></div><div><small>DATE OF BIRTH</small><strong id="portal-dob">—</strong></div><div><small>ADDRESS</small><strong id="portal-address">—</strong></div></div><div class="portal-marks-heading"><div><h3>Your assessment results</h3><p>Only you can see the marks linked to your student account.</p></div><span class="count" id="my-mark-count">0</span></div><div class="table-wrap"><table><thead><tr><th>ASSESSMENT</th><th>COURSE</th><th>RESULT</th><th>FEEDBACK</th></tr></thead><tbody id="my-marks"><tr><td class="empty" colspan="4">Loading your results…</td></tr></tbody></table></div></section>
+        </section>
+
+        <footer class="app-footer"><span>STUDENTDESK</span><span>Thoughtful tools for academic progress.</span><span>v1.0</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="modal" id="student-dialog"><form method="dialog" class="modal-card" id="student-form" novalidate><div class="modal-heading"><div><div class="eyebrow" id="student-form-kicker">NEW RECORD</div><h2 id="student-form-title">Register a student</h2><p>Personal details and course enrollment.</p></div><button class="modal-close" type="button" data-close="student-dialog" aria-label="Close">×</button></div><input type="hidden" id="student-id"><div class="student-code-note"><span class="code-icon">#</span><span><small>STUDENT ID</small><strong>Generated when the student is saved</strong></span><span class="auto-tag">AUTO</span></div><div class="form-section-title">PERSONAL DETAILS</div><div class="form-grid"><div class="field full"><label for="name">Full name <b>*</b></label><input id="name" name="name" autocomplete="name" maxlength="100" required placeholder="e.g. Alex Morgan"></div><div class="field"><label for="email">Email address <b>*</b></label><input id="email" name="email" type="email" autocomplete="email" required placeholder="alex@example.com"></div><div class="field"><label for="phone">Phone number <b>*</b></label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="24" required placeholder="+1 555 0100"></div><div class="field"><label for="gender">Gender</label><select id="gender" name="gender"><option value="">Choose an option</option><option value="female">Female</option><option value="male">Male</option><option value="nonbinary">Non-binary</option><option value="undisclosed">Prefer not to say</option></select></div><div class="field"><label for="date-of-birth">Date of birth <b>*</b></label><input id="date-of-birth" name="date_of_birth" type="date" required></div><div class="field full"><label for="address">Address <b>*</b></label><textarea id="address" name="address" rows="2" required placeholder="Street, city, region"></textarea></div><div class="field full"><label for="student-course">Enrolled course <b>*</b></label><select id="student-course" name="course_id" required><option value="">Select a course</option></select></div></div><p class="form-message" id="student-message" role="status"></p><div class="modal-actions"><button class="button quiet" type="button" data-close="student-dialog">Cancel</button><button class="button primary" id="save-student" type="submit">Save student</button></div></form></dialog>
+
+  <dialog class="modal" id="course-dialog"><form method="dialog" class="modal-card compact" id="course-form" novalidate><div class="modal-heading"><div><div class="eyebrow">COURSE CATALOG</div><h2 id="course-form-title">Add a course</h2><p>Set up a course for student enrollment.</p></div><button class="modal-close" type="button" data-close="course-dialog" aria-label="Close">×</button></div><input type="hidden" id="course-id"><div class="field"><label for="course-name">Course name <b>*</b></label><input id="course-name" required maxlength="120" placeholder="e.g. Computer Science"></div><div class="field"><label for="course-code">Course code <b>*</b></label><input id="course-code" required maxlength="20" placeholder="e.g. CS101"></div><div class="field"><label for="course-description">Description</label><textarea id="course-description" rows="3" placeholder="A short course overview"></textarea></div><p class="form-message" id="course-message" role="status"></p><div class="modal-actions"><button class="button quiet" type="button" data-close="course-dialog">Cancel</button><button class="button primary" type="submit">Save course</button></div></form></dialog>
+</body>
+</html>
