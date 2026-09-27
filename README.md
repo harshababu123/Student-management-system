@@ -16,6 +16,8 @@ Open `http://127.0.0.1:8000/`.
 
 The repository includes a Render Blueprint (`render.yaml`) for the Django web service and PostgreSQL database. In Render, create a new Blueprint Instance and connect this GitHub repository. After the first deploy completes, open the web service Shell and run:
 
+[Open this repository in Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2Fharshababu123%2FStudent-management-system)
+
 ```sh
 python manage.py createsuperuser
 ```
