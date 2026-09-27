@@ -12,6 +12,16 @@ python manage.py runserver
 
 Open `http://127.0.0.1:8000/`.
 
+## Deploy on Render
+
+The repository includes a Render Blueprint (`render.yaml`) for the Django web service and PostgreSQL database. In Render, create a new Blueprint Instance and connect this GitHub repository. After the first deploy completes, open the web service Shell and run:
+
+```sh
+python manage.py createsuperuser
+```
+
+The included Blueprint uses Render's free plans for a trial deployment. Free web services can spin down when idle, and free PostgreSQL databases expire after 30 days. Choose a paid PostgreSQL plan before using this deployment for lasting student records. The local SQLite database is not uploaded by the deployment.
+
 ## Set up accounts
 
 Create the first teacher account from a terminal:
